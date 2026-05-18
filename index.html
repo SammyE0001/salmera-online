@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Studio Salmera — AI Creative Agency & Portfolio</title>
-<meta name="description" content="Studio Salmera. An AI-native creative studio for fashion, art, and culture. Plus the portfolio of Salmera Estrosos." />
+<title>Studio Salmera — Independent Creative Studio</title>
+<meta name="description" content="An independent creative studio moving seamlessly between New York and the Philippines. Smart, thoughtful, well-executed ideas using digital and traditional media." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f3efe8;
-    --ink: #111111;
-    --muted: #6b6258;
-    --accent: #c64531;
-    --line: #1a1a1a;
+    --bg: #ffffff;
+    --ink: #000000;
+    --muted: #6b6b6b;
+    --line: #000000;
+    --soft-line: #e8e8e8;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -23,83 +23,391 @@
     color: var(--ink);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 400;
-    line-height: 1.55;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  .serif { font-family: 'Fraunces', 'Times New Roman', serif; }
+  a { color: inherit; }
+  .serif { font-family: 'Bodoni Moda', 'Times New Roman', serif; }
 
   /* ---------- NAV ---------- */
-  nav {
+  nav.topbar {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    padding: 22px 32px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  nav.topbar .brand a { text-decoration: none; }
+  nav.topbar .center-nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 40px;
-    mix-blend-mode: difference;
-    color: #f3efe8;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    line-height: 1.3;
   }
-  nav .brand {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 18px;
-    letter-spacing: 0.02em;
-  }
-  nav ul {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  nav a {
-    color: inherit;
+  nav.topbar .center-nav a {
     text-decoration: none;
     transition: opacity .2s;
   }
-  nav a:hover { opacity: .6; }
+  nav.topbar .center-nav a:hover { opacity: .5; }
+  nav.topbar .right-nav { justify-self: end; }
+  nav.topbar .right-nav a {
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  nav.topbar .right-nav a:hover { opacity: .5; }
 
   /* ---------- HERO ---------- */
   .hero {
-    min-height: 100vh;
-    padding: 160px 40px 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 80px 0 0;
+  }
+  .hero-image-wrap {
+    width: 100%;
+    height: 88vh;
+    overflow: hidden;
     position: relative;
   }
-  .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: clamp(56px, 11vw, 180px);
-    line-height: 0.92;
-    letter-spacing: -0.02em;
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
   }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .hero-meta {
+  .hero-credit {
+    padding: 10px 32px 0;
+    font-size: 11px;
+    color: var(--muted);
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 60px;
-    flex-wrap: wrap;
-    gap: 24px;
   }
-  .hero-meta p {
-    max-width: 380px;
-    font-size: 15px;
+
+  /* ---------- INTRO ---------- */
+  .intro {
+    padding: 80px 32px 100px;
+  }
+  .intro .label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    text-transform: lowercase;
+  }
+  .intro h1 {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 3.4vw, 52px);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    max-width: 1100px;
+  }
+  .intro h1 a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+    transition: opacity .2s;
+  }
+  .intro h1 a:hover { opacity: .55; }
+  .intro h1 sup {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    vertical-align: super;
+    margin-left: 2px;
     color: var(--muted);
   }
-  .hero-meta .label {
+
+  /* ---------- WORK INTRO ---------- */
+  .work-intro {
+    padding: 120px 32px 60px;
+    border-top: 1px solid var(--line);
+  }
+  .work-intro .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 60px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .work-intro h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 1100px;
+    margin-bottom: 24px;
+  }
+  .work-intro p.lede {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.5;
+    max-width: 720px;
+    color: var(--ink);
+  }
+
+  /* ---------- CASE STUDIES — visual hero style ---------- */
+  .case-list {
+    border-top: 1px solid var(--line);
+  }
+  .case {
+    border-bottom: 1px solid var(--line);
+  }
+  .case-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0;
+    min-height: 80vh;
+  }
+  .case-hero .visual {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    border-right: 1px solid var(--line);
+  }
+  .case-hero .visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--case-bg, #f0e6da);
+    z-index: 0;
+  }
+  .case-hero .visual .placeholder-name {
+    position: relative;
+    z-index: 1;
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(0,0,0,0.85);
+    font-size: clamp(36px, 6vw, 88px);
+    line-height: 0.95;
+    text-align: center;
+    letter-spacing: -0.02em;
+  }
+  .case-hero .visual .img-fill {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .case-hero .visual .case-num {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 2;
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(0,0,0,0.6);
+  }
+  .case-hero .info {
+    padding: 80px 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 720px;
+  }
+  .case-hero .info .tag {
     font-size: 11px;
-    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+  }
+  .case-hero .info .tag .spec {
+    display: inline-block;
+    padding: 2px 8px;
+    border: 1px solid var(--ink);
+    margin-right: 10px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .case-hero .info h3 {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 5vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+  .case-hero .info p.summary {
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+    max-width: 540px;
+  }
+  .case-hero .info .view-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    width: 240px;
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    background: transparent;
+    font-family: inherit;
+    font-weight: 600;
+    transition: opacity .25s;
+  }
+  .case-hero .info .view-toggle:hover { opacity: .55; }
+  .case-hero .info .view-toggle .arrow {
+    margin-left: auto;
+    transition: transform .25s;
+  }
+  details[open] .case-hero .info .view-toggle .arrow {
+    transform: rotate(90deg);
+  }
+
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+
+  .case-detail {
+    padding: 60px 40px 80px;
+    background: #fafafa;
+    border-top: 1px solid var(--line);
+  }
+  .case-detail .block {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    padding: 24px 0;
+    border-top: 1px solid var(--soft-line);
+    align-items: baseline;
+  }
+  .case-detail .block:first-of-type { border-top: none; padding-top: 0; }
+  .case-detail .block .k {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .case-detail .block .v {
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 740px;
+  }
+  .case-detail .block .v em { font-style: italic; }
+
+  /* ---------- ABOUT ---------- */
+  .about {
+    padding: 140px 32px 80px;
+    border-top: 1px solid var(--line);
+  }
+  .about .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 60px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .about h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 4.6vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 1200px;
+    margin-bottom: 60px;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+  }
+  .about-grid .copy p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 1.2em;
+    max-width: 620px;
+  }
+  .about-grid .copy a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .about-grid .copy .actions {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 360px;
+  }
+  .about-grid .copy .actions a {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .about-grid .copy .actions a:hover { opacity: .55; }
+  .about-grid .copy .actions a:last-child { border-bottom: 1px solid var(--line); }
+
+  /* ---------- CONTACT ---------- */
+  .contact {
+    padding: 140px 32px 100px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .contact .lead {
+    font-size: 13px;
+    margin-bottom: 32px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink);
+  }
+  .contact .big-email {
+    display: inline-block;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: clamp(28px, 4.4vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 6px;
+    transition: opacity .25s;
+  }
+  .contact .big-email:hover { opacity: .55; }
+  .contact .alt {
+    margin-top: 60px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .contact .alt a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
   /* ---------- MARQUEE ---------- */
@@ -107,414 +415,341 @@
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     overflow: hidden;
-    padding: 18px 0;
+    padding: 24px 0;
     background: var(--bg);
   }
   .marquee-track {
     display: flex;
     gap: 60px;
     width: max-content;
-    animation: scroll 40s linear infinite;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 28px;
+    animation: scroll 38s linear infinite;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 10vw, 160px);
+    line-height: 1;
+    letter-spacing: -0.02em;
     white-space: nowrap;
   }
   .marquee-track span::after {
     content: '✦';
     margin-left: 60px;
-    color: var(--accent);
+    font-size: 0.5em;
+    vertical-align: middle;
   }
   @keyframes scroll {
     to { transform: translateX(-50%); }
   }
 
-  /* ---------- SECTIONS ---------- */
-  section {
-    padding: 120px 40px;
-    border-bottom: 1px solid var(--line);
-  }
-  .section-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 60px;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 16px;
-  }
-  .section-label .num {
-    font-family: 'Fraunces', serif;
-    font-size: 14px;
-  }
-  .section-label .title {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 48px;
-    font-weight: 400;
-  }
-
-  /* ---------- ABOUT ---------- */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 80px;
-  }
-  .about-grid h3 {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 22px;
-    font-weight: 400;
-  }
-  .about-grid p {
-    font-size: 18px;
-    line-height: 1.7;
-    color: var(--ink);
-  }
-  .about-grid p + p { margin-top: 1em; }
-
-  /* ---------- SERVICES ---------- */
-  .services {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-  }
-  .service {
-    background: var(--bg);
-    padding: 40px;
-    min-height: 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: background .3s;
-    cursor: default;
-  }
-  .service:hover { background: var(--ink); color: var(--bg); }
-  .service:hover .service-num { color: var(--accent); }
-  .service-num {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 18px;
-    color: var(--muted);
-  }
-  .service h4 {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 1.1;
-    margin: 24px 0 12px;
-  }
-  .service p {
-    font-size: 14px;
-    line-height: 1.6;
-    max-width: 340px;
-  }
-
-  /* ---------- PORTFOLIO ---------- */
-  .work {
-    display: grid;
-    gap: 80px;
-  }
-  .work-item {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 48px;
-    align-items: start;
-  }
-  .work-image {
-    aspect-ratio: 4/5;
-    background: #ddd6c8;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-  }
-  .work-image::after {
-    content: 'project image';
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 14px;
-  }
-  .work-info .meta {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-  .work-info h3 {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: 48px;
-    line-height: 1.05;
-    margin-bottom: 24px;
-  }
-  .work-info h3 em { font-style: italic; color: var(--accent); }
-  .work-info p {
-    font-size: 16px;
-    line-height: 1.7;
-    max-width: 540px;
-  }
-
-  /* ---------- CONTACT ---------- */
-  .contact {
-    text-align: center;
-    padding: 160px 40px;
-  }
-  .contact .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-  }
-  .contact h2 {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: clamp(48px, 9vw, 140px);
-    line-height: 0.95;
-    margin-bottom: 48px;
-  }
-  .contact h2 em { font-style: italic; color: var(--accent); }
-  .contact a {
-    display: inline-block;
-    padding: 20px 40px;
-    border: 1px solid var(--ink);
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: all .3s;
-  }
-  .contact a:hover {
-    background: var(--ink);
-    color: var(--bg);
-  }
-  .contact .socials {
-    margin-top: 48px;
-    display: flex;
-    gap: 32px;
-    justify-content: center;
-    font-size: 13px;
-  }
-  .contact .socials a {
-    border: none;
-    padding: 0;
-    letter-spacing: 0.1em;
-  }
-  .contact .socials a:hover {
-    background: transparent;
-    color: var(--accent);
-  }
-
   /* ---------- FOOTER ---------- */
-  footer {
-    padding: 32px 40px;
+  footer.bottom {
+    padding: 22px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 12px;
     color: var(--muted);
-    border-top: 1px solid var(--line);
     flex-wrap: wrap;
     gap: 12px;
   }
+  footer.bottom a { text-decoration: none; }
+  footer.bottom a:hover { text-decoration: underline; }
 
   /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 768px) {
-    nav { padding: 18px 20px; }
-    nav ul { display: none; }
-    .hero { padding: 120px 20px 40px; }
-    section { padding: 80px 20px; }
+  @media (max-width: 900px) {
+    nav.topbar { padding: 14px 18px; font-size: 12px; }
+    .hero { padding-top: 76px; }
+    .hero-image-wrap { height: 70vh; }
+    .intro, .work-intro, .about, .contact { padding-left: 20px; padding-right: 20px; }
+    .case-hero { grid-template-columns: 1fr; min-height: auto; }
+    .case-hero .visual { padding: 80px 24px; min-height: 50vh; border-right: none; border-bottom: 1px solid var(--line); }
+    .case-hero .info { padding: 48px 24px; }
+    .case-detail { padding: 40px 24px 60px; }
+    .case-detail .block { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; }
     .about-grid { grid-template-columns: 1fr; gap: 32px; }
-    .services { grid-template-columns: 1fr; }
-    .work-item { grid-template-columns: 1fr; gap: 24px; }
-    .section-label .title { font-size: 32px; }
-    .work-info h3 { font-size: 32px; }
-    footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
-  }
-
-  /* ---------- ANIMATIONS ---------- */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity .8s ease, transform .8s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+    .about-grid img { max-width: 280px; }
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="brand">Studio Salmera</div>
-  <ul>
-    <li><a href="#agency">Studio</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<!-- TOP BAR -->
+<nav class="topbar">
+  <div class="brand"><a href="#top">studio_salmera<sup style="font-size:9px;">®</sup></a></div>
+  <div class="center-nav">
+    <a href="#work">work</a>
+    <a href="#about">about</a>
+    <a href="#contact">let's talk</a>
+  </div>
+  <div class="right-nav">
+    <a href="#contact">menu</a>
+  </div>
 </nav>
 
+<a id="top"></a>
+
 <!-- HERO -->
-<section class="hero" style="border-bottom: 1px solid var(--line);">
-  <div>
-    <p class="label" style="margin-bottom: 24px;">Est. 2026 · An AI-native studio</p>
-    <h1 class="serif">An atelier<br>for <em>image,</em><br>style &amp; idea.</h1>
+<section class="hero">
+  <div class="hero-image-wrap">
+    <img src="images/hero.jpg" alt="Studio Salmera — hero" />
   </div>
-  <div class="hero-meta">
-    <p>Studio Salmera is a creative agency working at the seam of fashion, art, and machine intelligence — building campaigns, identities, and worlds for brands that take taste seriously.</p>
-    <p class="label">↓ Scroll</p>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span>Fashion</span><span>Editorial</span><span>Identity</span><span>AI Direction</span><span>Campaigns</span><span>Worldbuilding</span>
-    <span>Fashion</span><span>Editorial</span><span>Identity</span><span>AI Direction</span><span>Campaigns</span><span>Worldbuilding</span>
-  </div>
-</div>
-
-<!-- AGENCY / SERVICES -->
-<section id="agency" class="reveal">
-  <div class="section-label">
-    <span class="num">01 — Studio</span>
-    <span class="title">Services</span>
-  </div>
-  <div class="services">
-    <div class="service">
-      <span class="service-num">i.</span>
-      <div>
-        <h4 class="serif">AI Art<br>Direction</h4>
-        <p>Mood, palette, character, and world for fashion houses and emerging labels. From single editorial drops to season-long visual systems.</p>
-      </div>
-    </div>
-    <div class="service">
-      <span class="service-num">ii.</span>
-      <div>
-        <h4 class="serif">Generative<br>Editorial</h4>
-        <p>Full visual campaigns produced through generative tools, with the eye of a stylist and the discipline of a magazine. Look-books, lookbook film, hero imagery.</p>
-      </div>
-    </div>
-    <div class="service">
-      <span class="service-num">iii.</span>
-      <div>
-        <h4 class="serif">Identity<br>&amp; Worldbuilding</h4>
-        <p>Logos, typography, voice, manifestos, films. The full surface of a brand built to live on the internet first, everywhere else second.</p>
-      </div>
-    </div>
-    <div class="service">
-      <span class="service-num">iv.</span>
-      <div>
-        <h4 class="serif">Content<br>Studio</h4>
-        <p>Short-form video, social campaigns, and creator-style content for brands that want to feel native to feed without losing their edge.</p>
-      </div>
-    </div>
+  <div class="hero-credit">
+    <span>(image — Studio Salmera, 2026)</span>
+    <span>scroll ↓</span>
   </div>
 </section>
 
-<!-- WORK -->
-<section id="work" class="reveal">
-  <div class="section-label">
-    <span class="num">02 — Selected Work</span>
-    <span class="title">Portfolio</span>
+<!-- INTRO -->
+<section class="intro">
+  <p class="label">(intro)</p>
+  <h1 class="serif">
+    We are <a href="#about">Salmera</a><sup>(1)</sup>, a small but mighty studio moving seamlessly between New York and the Philippines.
+    We craft smart, thoughtful, well-executed ideas using <a href="#work">digital</a><sup>(2)</sup> and <a href="#about">traditional</a><sup>(3)</sup> media.
+  </h1>
+</section>
+
+<!-- WORK INTRO -->
+<section class="work-intro" id="work">
+  <div class="section-head">
+    <span>(work — 01)</span>
+    <span>five brand teardowns</span>
   </div>
-  <p style="font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-top:-32px; margin-bottom:48px;">Speculative work &amp; studio explorations</p>
-  <div class="work">
+  <h2 class="serif">Five companies. Five questions.</h2>
+  <p class="lede">Self-initiated brand analyses — what's working, what isn't, the underlying choice. Labelled <em>SPEC</em> because no one paid me to write them.</p>
+</section>
 
-    <div class="work-item">
-      <div class="work-image"></div>
-      <div class="work-info">
-        <div class="meta">Speculative · Brand Identity · 2026</div>
-        <h3 class="serif">Maison <em>Florent</em></h3>
-        <p>A speculative identity for a niche perfume house operating between Paris and Mexico City. Studio Salmera built the full visual system — wordmark, secondary marks, typographic specimen, packaging language, and an AI-directed launch campaign centered on the imagined "Florent No. 3." A study in how an AI-native studio can produce house-level work without the house.</p>
+<!-- CASE STUDIES -->
+<section class="case-list">
+
+  <!-- 01 AMAN -->
+  <details class="case" open>
+    <summary>
+      <div class="case-hero">
+        <div class="visual" style="--case-bg: #d9cdb9;">
+          <span class="case-num">01 / Hospitality</span>
+          <span class="placeholder-name serif">Aman</span>
+        </div>
+        <div class="info">
+          <div class="tag"><span class="spec">SPEC</span> Hospitality · Brand Strategy · 2026</div>
+          <h3 class="serif">Aman Resorts</h3>
+          <p class="summary">A 38-property ultra-luxury hotel group that has never run a traditional advertising campaign — yet 30-40% of bookings are repeat customers. A teardown of how the absence of marketing built the most loyal repeat base in luxury hospitality.</p>
+          <span class="view-toggle">View project <span class="arrow">→</span></span>
+        </div>
+      </div>
+    </summary>
+    <div class="case-detail">
+      <div class="block">
+        <div class="k">What it was, and who it was for</div>
+        <div class="v">A 38-property ultra-luxury hotel group founded by Adrian Zecha in 1988. Built originally as a hotel for himself and his friends — a private answer to the impersonality of Aman's competitive set. Audience: travellers who have already been everywhere and want no one to know they're there.</div>
+      </div>
+      <div class="block">
+        <div class="k">The question</div>
+        <div class="v">Aman has never run a traditional advertising campaign. Yet 30-40% of bookings are repeat customers — the famous "Aman Junkie" phenomenon. <em>How does the absence of marketing produce the most loyal repeat customer base in luxury hospitality?</em></div>
+      </div>
+      <div class="block">
+        <div class="k">The steps</div>
+        <div class="v">Read Zecha's original brief for Amanpuri (1988). Looked at every Aman property's website — each operates independently, no unified luxury portal, prices hidden until booking. Mapped how Aman uses architecture (Kerry Hill, Ed Tuttle, Jean-Michel Gathy) as its primary brand medium. Studied the 2019 <em>Vanity Fair</em> piece on the Junkies. Compared its press strategy against Four Seasons and Rosewood.</div>
+      </div>
+      <div class="block">
+        <div class="k">What I produced &amp; what I learned</div>
+        <div class="v">A one-page argument that <em>Aman's restraint is its growth strategy</em>. Scarcity isn't manufactured — it's structural. When you don't advertise, your customers do it for you, and that work compounds. The lesson for any brand building a high-end identity: every additional message dilutes the original one. Sometimes the loudest thing a brand can do is whisper.</div>
       </div>
     </div>
+  </details>
 
-    <div class="work-item">
-      <div class="work-image"></div>
-      <div class="work-info">
-        <div class="meta">Speculative · Editorial Campaign · 2026</div>
-        <h3 class="serif">The <em>After Mass</em></h3>
-        <p>An editorial campaign for an imagined ready-to-wear capsule, shot entirely through generative tools. Sunday afternoon as a recurring American ritual — the dress you wear to brunch with your mother, the one you wear to walk home alone. Twelve images, one short film, full lookbook PDF.</p>
+  <!-- 02 HOTEL COSTES -->
+  <details class="case">
+    <summary>
+      <div class="case-hero">
+        <div class="visual" style="--case-bg: #6b1717;">
+          <span class="case-num" style="color: rgba(255,255,255,0.55);">02 / Hotel</span>
+          <span class="placeholder-name serif" style="color: rgba(255,235,220,0.92);">Costes</span>
+        </div>
+        <div class="info">
+          <div class="tag"><span class="spec">SPEC</span> Hotel · Brand Extension · 2026</div>
+          <h3 class="serif">Hôtel Costes</h3>
+          <p class="summary">A red-velvet Paris hotel that became more famous for its music compilations than for its rooms. A study in how a single perfectly-controlled secondary medium — a CD series — outshone the product it was meant to advertise.</p>
+          <span class="view-toggle">View project <span class="arrow">→</span></span>
+        </div>
+      </div>
+    </summary>
+    <div class="case-detail">
+      <div class="block">
+        <div class="k">What it was, and who it was for</div>
+        <div class="v">A boutique hotel in Paris's 1st arrondissement, opened in 1995 by the Costes brothers, designed by Jacques Garcia. A red-velvet world for fashion-week regulars and the late-night creative class. The hotel that built a music empire almost by accident.</div>
+      </div>
+      <div class="block">
+        <div class="k">The question</div>
+        <div class="v">In 1999, resident DJ Stéphane Pompougnac released the first Hôtel Costes compilation — a takeaway souvenir for guests. Twenty volumes later, it has sold millions, and most people who recognize the name have never stayed at the hotel. <em>How does a perfectly-controlled secondary medium become more famous than the product it was meant to advertise?</em></div>
+      </div>
+      <div class="block">
+        <div class="k">The steps</div>
+        <div class="v">Listened through the first ten compilations chronologically. Read interviews with Pompougnac. Studied the visual identity — always red velvet, always the same condensed serif typography. Mapped the timeline: hotel opens → in-house DJ → first compilation → suddenly the music outpaces the hotel as a cultural object.</div>
+      </div>
+      <div class="block">
+        <div class="k">What I produced &amp; what I learned</div>
+        <div class="v">A short essay on "ambient branding" — the idea that a single secondary artefact, perfectly controlled, can carry more brand equity than the primary product. <em>The souvenir is the strategy.</em> What guests take home is what they actually own. Every brand should ask itself: what do my customers carry away — and is it the thing I most want them to carry?</div>
       </div>
     </div>
+  </details>
 
-    <div class="work-item">
-      <div class="work-image"></div>
-      <div class="work-info">
-        <div class="meta">Speculative · Magazine &amp; System · 2026</div>
-        <h3 class="serif">Postal <em>Magazine</em></h3>
-        <p>A speculative quarterly print magazine for emerging fashion writers. Studio Salmera designed the full identity — masthead, grid, type system, cover series — alongside a Substack template kit and Instagram carousel system so writers could extend the publication's voice across channels. A case study in print-thinking for the internet era.</p>
+  <!-- 03 LE LABO -->
+  <details class="case">
+    <summary>
+      <div class="case-hero">
+        <div class="visual" style="--case-bg: #e5dcc4;">
+          <span class="case-num">03 / Fragrance</span>
+          <span class="placeholder-name serif">Le&nbsp;Labo</span>
+        </div>
+        <div class="info">
+          <div class="tag"><span class="spec">SPEC</span> Fragrance · Retail Experience · 2026</div>
+          <h3 class="serif">Le Labo</h3>
+          <p class="summary">A fragrance house that makes you wait while your bottle is hand-blended in front of you, then prints your name on the label. A case for friction as luxury — when slowness is the differentiator in a category obsessed with speed.</p>
+          <span class="view-toggle">View project <span class="arrow">→</span></span>
+        </div>
+      </div>
+    </summary>
+    <div class="case-detail">
+      <div class="block">
+        <div class="k">What it was, and who it was for</div>
+        <div class="v">A fragrance house started in 2006 by Fabrice Penot and Edouard Roschi in New York's Nolita. Sold to Estée Lauder in 2014 but operates with the discipline of an independent. Audience: people for whom fragrance is autobiographical, not seasonal.</div>
+      </div>
+      <div class="block">
+        <div class="k">The question</div>
+        <div class="v">Le Labo makes customers wait while their fragrance is hand-blended in front of them, then printed with their name and the date. It's slower than ordering online. It's slower than buying off the shelf. <em>How does inserting friction into a frictionless category become the brand's most valuable asset?</em></div>
+      </div>
+      <div class="block">
+        <div class="k">The steps</div>
+        <div class="v">Did the in-store experience in NYC, Tokyo, and Paris. Studied the bottle label — beige, all-caps grotesque, formatted like a chemist's receipt. Read on their resistance to e-commerce until 2020. Tracked the "city exclusives" series (Tubéreuse 40 in NYC, Limette 37 in San Francisco) as a travel-driver. Talked to two store associates about the actual workflow.</div>
+      </div>
+      <div class="block">
+        <div class="k">What I produced &amp; what I learned</div>
+        <div class="v">A case for <em>friction as luxury</em>. The hand-blending is technically unnecessary — perfume is stable, it doesn't need to be mixed to order. But the waiting makes the customer a participant. The personalization makes ownership feel earned. In a category obsessed with speed, slowness is the differentiator. The brand isn't the smell. The brand is the ten minutes you waited for it.</div>
       </div>
     </div>
+  </details>
 
-    <div class="work-item">
-      <div class="work-image"></div>
-      <div class="work-info">
-        <div class="meta">Speculative · Worldbuilding · 2025</div>
-        <h3 class="serif">Sotto <em>Sound</em></h3>
-        <p>A complete album-rollout campaign for a fictional Brooklyn musician — single covers, lyric videos, Instagram canvas, press kit, and a six-minute AI-directed visualizer. Built as a study in what a record label-quality rollout looks like when produced entirely inside a small studio.</p>
+  <!-- 04 MEJURI -->
+  <details class="case">
+    <summary>
+      <div class="case-hero">
+        <div class="visual" style="--case-bg: #c9a96a;">
+          <span class="case-num">04 / Jewelry</span>
+          <span class="placeholder-name serif">Mejuri</span>
+        </div>
+        <div class="info">
+          <div class="tag"><span class="spec">SPEC</span> Jewelry · Positioning · 2026</div>
+          <h3 class="serif">Mejuri</h3>
+          <p class="summary">A direct-to-consumer fine jewelry brand that broke a hundred years of "the man buys it for the woman" marketing. A messaging audit on the single linguistic shift — from <em>object given</em> to <em>object chosen for yourself</em> — that unlocked a demographic the legacy houses ignored.</p>
+          <span class="view-toggle">View project <span class="arrow">→</span></span>
+        </div>
+      </div>
+    </summary>
+    <div class="case-detail">
+      <div class="block">
+        <div class="k">What it was, and who it was for</div>
+        <div class="v">A direct-to-consumer fine jewelry brand founded in 2015 by Noura Sakkijha in Toronto. Started online, now operates 40+ stores. Built fine jewelry into something women buy themselves on a Tuesday.</div>
+      </div>
+      <div class="block">
+        <div class="k">The question</div>
+        <div class="v">For a century, fine jewelry was sold through a single emotional narrative: the man buys it for the woman, for an occasion. <em>What was the messaging architecture Mejuri used to break that narrative — and what stayed true even after the brand grew past founder-mode?</em></div>
+      </div>
+      <div class="block">
+        <div class="k">The steps</div>
+        <div class="v">Tracked their email subject lines across six months (saved 80+). Studied their Instagram before and after 2020 — the shift from product photography to portraiture is the strategic pivot. Read every founder interview where Sakkijha names "the diamond industry's reliance on the man-buys-for-woman trope" as the gap she was attacking. Compared price points to Tiffany, Cartier, and Catbird at equivalent metal weights.</div>
+      </div>
+      <div class="block">
+        <div class="k">What I produced &amp; what I learned</div>
+        <div class="v">A messaging audit arguing that Mejuri's real innovation wasn't the DTC model or the price — it was the reframe from <em>object given</em> to <em>object chosen for yourself</em>. That single linguistic shift unlocked a demographic the legacy houses had ignored for decades. The lesson: sometimes the most expensive thing a brand can do is hold onto an outdated cultural assumption. The opening is hiding inside the category's rules.</div>
       </div>
     </div>
+  </details>
 
-  </div>
+  <!-- 05 THE ROW -->
+  <details class="case">
+    <summary>
+      <div class="case-hero">
+        <div class="visual" style="--case-bg: #e8e4dc;">
+          <span class="case-num">05 / Fashion</span>
+          <span class="placeholder-name serif">The&nbsp;Row</span>
+        </div>
+        <div class="info">
+          <div class="tag"><span class="spec">SPEC</span> Fashion · Restraint Strategy · 2026</div>
+          <h3 class="serif">The Row</h3>
+          <p class="summary">Two celebrities widely dismissed as nepotism candidates built the most respected quiet-luxury house in American fashion in under two decades. A case that quiet luxury isn't an aesthetic — it's an operational discipline of saying no to every revenue-accelerating shortcut.</p>
+          <span class="view-toggle">View project <span class="arrow">→</span></span>
+        </div>
+      </div>
+    </summary>
+    <div class="case-detail">
+      <div class="block">
+        <div class="k">What it was, and who it was for</div>
+        <div class="v">A luxury ready-to-wear house founded in 2006 by Mary-Kate and Ashley Olsen. The opposite of an Olsen-twins-fashion-line in every imaginable way. Audience: customers for whom the highest signal is the absence of one.</div>
+      </div>
+      <div class="block">
+        <div class="k">The question</div>
+        <div class="v">Two celebrities widely dismissed as nepotism candidates built, in under two decades, the most respected quiet-luxury house in American fashion. <em>What does "quiet" actually mean as a strategic choice — and is it an aesthetic, or is it an operating discipline?</em></div>
+      </div>
+      <div class="block">
+        <div class="k">The steps</div>
+        <div class="v">Looked at every collection from Pre-Fall 2006 through SS2026. Mapped their press strategy — they don't speak to press, ever. Visited their stores in NY, LA, and Mayfair: no music, no signage on the storefront, no in-store photography. Catalogued fabric sourcing — Loro Piana cashmere, Sankt Gallen embroidery, the same suppliers as Hermès. Read every Vanessa Friedman piece on the brand.</div>
+      </div>
+      <div class="block">
+        <div class="k">What I produced &amp; what I learned</div>
+        <div class="v">A short essay arguing that <em>quiet luxury is not an aesthetic — it's an operational discipline</em>. The Row's silence is the result of saying no to every revenue-accelerating shortcut: no licensing, no diffusion line, no influencers, no e-commerce until 2017. Every restraint built brand equity. The lesson: when everyone is screaming, the bandwidth at low volume is wide open — but staying quiet requires turning down money, repeatedly, for years.</div>
+      </div>
+    </div>
+  </details>
+
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="reveal">
-  <div class="section-label">
-    <span class="num">03 — About</span>
-    <span class="title">The Person</span>
+<section class="about" id="about">
+  <div class="section-head">
+    <span>(about — 02)</span>
   </div>
+
+  <h2 class="serif">An independent creative studio building custom ideas, from scratch, for people who want to stand out.</h2>
+
   <div class="about-grid">
-    <h3 class="serif">Salmera Estrosos.<br>Writer, researcher, builder.</h3>
-    <div>
-      <p>Salmera is a writer and researcher trained in philosophy at Southern Connecticut and Drexel. Her work moves between policy, communications, and image — currently as an Associate Intern at Global Peace Foundation and Project Manager at BNG Nonprofit.</p>
-      <p>Studio Salmera is the creative half of that practice: a small studio applying her instinct for narrative and her eye for image to brands, fashion houses, and culture-first ventures. She also writes <em>Publicity Stunt</em> and <em>Calling Card</em> on Substack.</p>
-      <p>Based in New York &amp; Washington, D.C. — working anywhere.</p>
+    <img src="images/about.jpg" alt="Salmera Estrosos" />
+    <div class="copy">
+      <p>I'm Salmera — a writer, researcher, and builder trained in philosophy at Drexel and Southern Connecticut. I run two publications on Substack and work across policy research and nonprofit communications.</p>
+      <p>Studio Salmera is the creative half of that practice. A small studio applying an instinct for narrative — and an eye for image — to brands, fashion houses, and culture-first ventures. Working in AI-native production with the discipline of a magazine.</p>
+      <p>Based in New York &amp; the Philippines — working anywhere.</p>
+      <div class="actions">
+        <a href="#contact">Let's talk <span>→</span></a>
+        <a href="https://salmera.substack.com" target="_blank" rel="noopener">SentiMental <span>↗</span></a>
+        <a href="https://publicitystunt.substack.com" target="_blank" rel="noopener">Calling Card <span>↗</span></a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact reveal">
-  <p class="eyebrow">Get in touch</p>
-  <h2 class="serif">Let's<br>build <em>something.</em></h2>
-  <a href="mailto:salmeraestrosos@gmail.com">salmeraestrosos@gmail.com</a>
-  <div class="socials">
-    <a href="https://publicitystunt.substack.com" target="_blank">Substack</a>
-    <a href="#" target="_blank">Instagram</a>
-    <a href="#" target="_blank">TikTok</a>
-    <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
-  </div>
+<section class="contact" id="contact">
+  <p class="lead">Let's talk</p>
+  <a href="mailto:hello@salmera.online" class="big-email serif">hello@salmera.online</a>
+  <p class="alt">Alternatively, reach me on <a href="https://salmera.substack.com" target="_blank" rel="noopener">Substack</a>.</p>
 </section>
 
-<footer>
-  <div>© 2026 Studio Salmera. All rights reserved.</div>
-  <div>salmera.online</div>
-</footer>
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track serif">
+    <span>IT'S ONLY UP FROM HERE</span>
+    <span>IT'S ONLY UP FROM HERE</span>
+    <span>IT'S ONLY UP FROM HERE</span>
+    <span>IT'S ONLY UP FROM HERE</span>
+    <span>IT'S ONLY UP FROM HERE</span>
+    <span>IT'S ONLY UP FROM HERE</span>
+  </div>
+</div>
 
-<script>
-  // Reveal-on-scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+<!-- FOOTER -->
+<footer class="bottom">
+  <div>© Studio Salmera · All rights reserved</div>
+  <div>salmera.online</div>
+  <div><a href="https://instagram.com" target="_blank" rel="noopener">Instagram ↗</a></div>
+</footer>
 
 </body>
 </html>
