@@ -1,0 +1,657 @@
+# GitHub Setup — Zero Coding Knowledge Required
+
+This guide gets your portfolio site live at **salmera.online** in about 20 minutes. You won't write a line of code.
+
+## What you'll do
+1. Create a GitHub repository (5 min)
+2. Upload the portfolio files (2 min)
+3. Turn on GitHub Pages (2 min)
+4. Point your domain `salmera.online` at it (10 min, mostly waiting)
+
+---
+
+## Step 1 — Create the repository
+
+1. Go to https://github.com and log in to your account.
+2. Click the **+** in the top right → **New repository**.
+3. Fill in:
+   - **Repository name:** `salmera-online` (this just names the repo, the URL will use your domain)
+   - **Description:** `Portfolio site for salmera.online`
+   - **Public** (must be public for free GitHub Pages)
+   - ✅ Check "Add a README file"
+4. Click **Create repository**.
+
+---
+
+## Step 2 — Upload the portfolio files
+
+1. On the repo page you just made, click **Add file** → **Upload files**.
+2. Drag the contents of the `portfolio_site` folder into the browser (the `index.html`, `README.md`, and this file).
+3. Scroll down. In the "Commit changes" box, write: `Initial portfolio upload`.
+4. Click **Commit changes**.
+
+You'll now see all three files listed in the repo.
+
+---
+
+## Step 3 — Turn on GitHub Pages
+
+1. In the repo, click **Settings** (top tabs, on the right).
+2. In the left sidebar, click **Pages**.
+3. Under "Source", make sure it says:
+   - **Branch:** `main`
+   - **Folder:** `/ (root)`
+4. Click **Save**.
+5. Wait 1-2 minutes. Refresh. You'll see a green banner: **"Your site is live at https://[your-username].github.io/salmera-online/"**
+6. Click that link. The site should load.
+
+🎉 The site is now live on the internet, just at a GitHub URL. Next step makes it live at your real domain.
+
+---
+
+## Step 4 — Point salmera.online at GitHub Pages
+
+This is the only fiddly part because it depends on where you bought `salmera.online`. The most common registrars are Namecheap, Squarespace Domains, GoDaddy, and Porkbun. I'll cover the general pattern — search your registrar's docs for "GitHub Pages custom domain" if you need exact screenshots.
+
+### A. Tell GitHub about your domain
+
+1. Back on the repo, go to **Settings → Pages**.
+2. In the "Custom domain" field, type: `salmera.online`
+3. Click **Save**.
+4. GitHub will start checking the DNS. It'll show an error for a few minutes — that's fine.
+
+### B. Tell your domain registrar about GitHub
+
+1. Log in to wherever you bought `salmera.online` (Namecheap, Squarespace, etc.).
+2. Find the **DNS settings** (sometimes called "Manage DNS", "Advanced DNS", or "DNS Records").
+3. Add these records exactly:
+
+| Type | Host/Name | Value | TTL |
+|------|-----------|-------|-----|
+| A | `@` | `185.199.108.153` | Auto/3600 |
+| A | `@` | `185.199.109.153` | Auto/3600 |
+| A | `@` | `185.199.110.153` | Auto/3600 |
+| A | `@` | `185.199.111.153` | Auto/3600 |
+| CNAME | `www` | `[your-username].github.io` | Auto/3600 |
+
+(Replace `[your-username]` with your actual GitHub username, no brackets, no `https://`, no trailing slash.)
+
+4. Save the DNS changes.
+
+### C. Wait
+
+DNS propagation takes anywhere from 10 minutes to a few hours. You can check progress by going to https://www.whatsmydns.net/ and entering `salmera.online`.
+
+### D. Enable HTTPS
+
+1. Once the DNS propagates (the GitHub error in Settings → Pages clears), go back to **Settings → Pages**.
+2. ✅ Check **Enforce HTTPS**.
+
+Done. **https://salmera.online** now serves the portfolio site.
+
+---
+
+## To update the site later
+1. Edit `index.html` locally OR directly on GitHub by clicking the file → pencil icon ✏️.
+2. Save / commit.
+3. GitHub Pages automatically redeploys in 1-2 minutes. No other action needed.
+
+---
+
+## If something breaks
+- **Site shows "404" at github.io URL:** wait another 5 minutes, GitHub Pages can be slow to first-build.
+- **Domain not connecting:** check DNS at https://www.whatsmydns.net/ — usually it's just propagation time.
+- **HTTPS checkbox is grayed out:** wait for DNS to fully propagate, then refresh the Settings page.
+- **Anything else:** screenshot the error and send it to me, I'll walk you through.
+
+---
+
+## What I need from you to push this code FOR you (optional)
+If you'd rather I commit the code to your GitHub directly (so you skip Step 2 entirely):
+1. Tell me your GitHub username
+2. Create a Personal Access Token: https://github.com/settings/tokens → "Generate new token (classic)" → check `repo` scope → generate → copy the token (starts with `ghp_...`)
+3. Send me the token in chat. I'll use it once to push the files and then you can revoke it at the same URL.
+
+⚠️ Treat the token like a password while it's active. Revoke after I'm done.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Studio Salmera — AI Creative Agency & Portfolio</title>
+<meta name="description" content="Studio Salmera. An AI-native creative studio for fashion, art, and culture. Plus the portfolio of Salmera Estrosos." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3efe8;
+    --ink: #111111;
+    --muted: #6b6258;
+    --accent: #c64531;
+    --line: #1a1a1a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .serif { font-family: 'Fraunces', 'Times New Roman', serif; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    mix-blend-mode: difference;
+    color: #f3efe8;
+  }
+  nav .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+  nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  nav a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  nav a:hover { opacity: .6; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    padding: 160px 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(56px, 11vw, 180px);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 60px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .hero-meta p {
+    max-width: 380px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .hero-meta .label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    padding: 18px 0;
+    background: var(--bg);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 28px;
+    white-space: nowrap;
+  }
+  .marquee-track span::after {
+    content: '✦';
+    margin-left: 60px;
+    color: var(--accent);
+  }
+  @keyframes scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section {
+    padding: 120px 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 16px;
+  }
+  .section-label .num {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+  }
+  .section-label .title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 48px;
+    font-weight: 400;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+  }
+  .about-grid h3 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .about-grid p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .about-grid p + p { margin-top: 1em; }
+
+  /* ---------- SERVICES ---------- */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service {
+    background: var(--bg);
+    padding: 40px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background .3s;
+    cursor: default;
+  }
+  .service:hover { background: var(--ink); color: var(--bg); }
+  .service:hover .service-num { color: var(--accent); }
+  .service-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--muted);
+  }
+  .service h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.1;
+    margin: 24px 0 12px;
+  }
+  .service p {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 340px;
+  }
+
+  /* ---------- PORTFOLIO ---------- */
+  .work {
+    display: grid;
+    gap: 80px;
+  }
+  .work-item {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .work-image {
+    aspect-ratio: 4/5;
+    background: #ddd6c8;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .work-image::after {
+    content: 'project image';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+  }
+  .work-info .meta {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .work-info h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .work-info h3 em { font-style: italic; color: var(--accent); }
+  .work-info p {
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 540px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact {
+    text-align: center;
+    padding: 160px 40px;
+  }
+  .contact .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .contact h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 9vw, 140px);
+    line-height: 0.95;
+    margin-bottom: 48px;
+  }
+  .contact h2 em { font-style: italic; color: var(--accent); }
+  .contact a {
+    display: inline-block;
+    padding: 20px 40px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all .3s;
+  }
+  .contact a:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .contact .socials {
+    margin-top: 48px;
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    font-size: 13px;
+  }
+  .contact .socials a {
+    border: none;
+    padding: 0;
+    letter-spacing: 0.1em;
+  }
+  .contact .socials a:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 768px) {
+    nav { padding: 18px 20px; }
+    nav ul { display: none; }
+    .hero { padding: 120px 20px 40px; }
+    section { padding: 80px 20px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .services { grid-template-columns: 1fr; }
+    .work-item { grid-template-columns: 1fr; gap: 24px; }
+    .section-label .title { font-size: 32px; }
+    .work-info h3 { font-size: 32px; }
+    footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Studio Salmera</div>
+  <ul>
+    <li><a href="#agency">Studio</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="border-bottom: 1px solid var(--line);">
+  <div>
+    <p class="label" style="margin-bottom: 24px;">Est. 2026 · An AI-native studio</p>
+    <h1 class="serif">An atelier<br>for <em>image,</em><br>style &amp; idea.</h1>
+  </div>
+  <div class="hero-meta">
+    <p>Studio Salmera is a creative agency working at the seam of fashion, art, and machine intelligence — building campaigns, identities, and worlds for brands that take taste seriously.</p>
+    <p class="label">↓ Scroll</p>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Fashion</span><span>Editorial</span><span>Identity</span><span>AI Direction</span><span>Campaigns</span><span>Worldbuilding</span>
+    <span>Fashion</span><span>Editorial</span><span>Identity</span><span>AI Direction</span><span>Campaigns</span><span>Worldbuilding</span>
+  </div>
+</div>
+
+<!-- AGENCY / SERVICES -->
+<section id="agency" class="reveal">
+  <div class="section-label">
+    <span class="num">01 — Studio</span>
+    <span class="title">Services</span>
+  </div>
+  <div class="services">
+    <div class="service">
+      <span class="service-num">i.</span>
+      <div>
+        <h4 class="serif">AI Art<br>Direction</h4>
+        <p>Mood, palette, character, and world for fashion houses and emerging labels. From single editorial drops to season-long visual systems.</p>
+      </div>
+    </div>
+    <div class="service">
+      <span class="service-num">ii.</span>
+      <div>
+        <h4 class="serif">Generative<br>Editorial</h4>
+        <p>Full visual campaigns produced through generative tools, with the eye of a stylist and the discipline of a magazine. Look-books, lookbook film, hero imagery.</p>
+      </div>
+    </div>
+    <div class="service">
+      <span class="service-num">iii.</span>
+      <div>
+        <h4 class="serif">Identity<br>&amp; Worldbuilding</h4>
+        <p>Logos, typography, voice, manifestos, films. The full surface of a brand built to live on the internet first, everywhere else second.</p>
+      </div>
+    </div>
+    <div class="service">
+      <span class="service-num">iv.</span>
+      <div>
+        <h4 class="serif">Content<br>Studio</h4>
+        <p>Short-form video, social campaigns, and creator-style content for brands that want to feel native to feed without losing their edge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="reveal">
+  <div class="section-label">
+    <span class="num">02 — Selected Work</span>
+    <span class="title">Portfolio</span>
+  </div>
+  <p style="font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-top:-32px; margin-bottom:48px;">Speculative work &amp; studio explorations</p>
+  <div class="work">
+
+    <div class="work-item">
+      <div class="work-image"></div>
+      <div class="work-info">
+        <div class="meta">Speculative · Brand Identity · 2026</div>
+        <h3 class="serif">Maison <em>Florent</em></h3>
+        <p>A speculative identity for a niche perfume house operating between Paris and Mexico City. Studio Salmera built the full visual system — wordmark, secondary marks, typographic specimen, packaging language, and an AI-directed launch campaign centered on the imagined "Florent No. 3." A study in how an AI-native studio can produce house-level work without the house.</p>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="work-image"></div>
+      <div class="work-info">
+        <div class="meta">Speculative · Editorial Campaign · 2026</div>
+        <h3 class="serif">The <em>After Mass</em></h3>
+        <p>An editorial campaign for an imagined ready-to-wear capsule, shot entirely through generative tools. Sunday afternoon as a recurring American ritual — the dress you wear to brunch with your mother, the one you wear to walk home alone. Twelve images, one short film, full lookbook PDF.</p>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="work-image"></div>
+      <div class="work-info">
+        <div class="meta">Speculative · Magazine &amp; System · 2026</div>
+        <h3 class="serif">Postal <em>Magazine</em></h3>
+        <p>A speculative quarterly print magazine for emerging fashion writers. Studio Salmera designed the full identity — masthead, grid, type system, cover series — alongside a Substack template kit and Instagram carousel system so writers could extend the publication's voice across channels. A case study in print-thinking for the internet era.</p>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="work-image"></div>
+      <div class="work-info">
+        <div class="meta">Speculative · Worldbuilding · 2025</div>
+        <h3 class="serif">Sotto <em>Sound</em></h3>
+        <p>A complete album-rollout campaign for a fictional Brooklyn musician — single covers, lyric videos, Instagram canvas, press kit, and a six-minute AI-directed visualizer. Built as a study in what a record label-quality rollout looks like when produced entirely inside a small studio.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <div class="section-label">
+    <span class="num">03 — About</span>
+    <span class="title">The Person</span>
+  </div>
+  <div class="about-grid">
+    <h3 class="serif">Salmera Estrosos.<br>Writer, researcher, builder.</h3>
+    <div>
+      <p>Salmera is a writer and researcher trained in philosophy at Southern Connecticut and Drexel. Her work moves between policy, communications, and image — currently as an Associate Intern at Global Peace Foundation and Project Manager at BNG Nonprofit.</p>
+      <p>Studio Salmera is the creative half of that practice: a small studio applying her instinct for narrative and her eye for image to brands, fashion houses, and culture-first ventures. She also writes <em>Publicity Stunt</em> and <em>Calling Card</em> on Substack.</p>
+      <p>Based in New York &amp; Washington, D.C. — working anywhere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact reveal">
+  <p class="eyebrow">Get in touch</p>
+  <h2 class="serif">Let's<br>build <em>something.</em></h2>
+  <a href="mailto:salmeraestrosos@gmail.com">salmeraestrosos@gmail.com</a>
+  <div class="socials">
+    <a href="https://publicitystunt.substack.com" target="_blank">Substack</a>
+    <a href="#" target="_blank">Instagram</a>
+    <a href="#" target="_blank">TikTok</a>
+    <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Studio Salmera. All rights reserved.</div>
+  <div>salmera.online</div>
+</footer>
+
+<script>
+  // Reveal-on-scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
+
+# Studio Salmera — Portfolio Site
+
+A single-file portfolio + AI creative agency site for **salmera.online**.
+
+Stack: Plain HTML/CSS/JS. No frameworks, no build step. Deploys free on GitHub Pages.
+
+## File structure
+```
+portfolio_site/
+├── index.html      ← the entire site (HTML + CSS + JS in one file)
+└── README.md       ← this file
+```
+
+## To edit content (no coding needed)
+Open `index.html` in any text editor (TextEdit, VS Code, Notepad). Look for the comments — they're marked `<!-- HERO -->`, `<!-- AGENCY / SERVICES -->`, `<!-- WORK -->`, etc. Edit only the text between the tags. Don't touch anything inside `<style>`.
+
+For project images: drop image files in this folder and replace the `<div class="work-image"></div>` blocks with `<img src="your-image.jpg" alt="" class="work-image">`.
+
+## To deploy
+Follow `GITHUB_SETUP.md` (sister file). Five minutes, zero coding knowledge required.
